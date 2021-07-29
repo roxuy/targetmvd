@@ -32,6 +32,11 @@ gem 'rubocop-rootstrap'
 
 gem 'rubocop-rails', require: false
 
+# users authentication
+gem 'devise_token_auth'
+#enable cors
+gem 'rack-cors'
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
