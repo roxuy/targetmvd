@@ -39,4 +39,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   include DeviseTokenAuth::Concerns::User
   enum gender: { female: 0, male: 1, other: 2 }
+
 end
