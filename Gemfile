@@ -61,6 +61,7 @@ end
 
 # Run against this stable release
 group :development, :test do
+  gem 'ffi'
   gem 'rspec-rails', '~> 3.9'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
