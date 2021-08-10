@@ -1,24 +1,32 @@
-# README
+# Target MVD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+This project is guided by Rootstrap Learning Camp. 
 
-* Ruby version
+It follows this API specification: https://targetapi2021.docs.apiary.io/#
 
-* System dependencies
+* Requirements:
 
-* Configuration
+-Ruby version: 3.0.2
 
-* Database creation
+-PostgreSQL: 9 or higher
 
-* Database initialization
+* Install dependencies: 
 
-* How to run the test suite
+-run: bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+* Services: 
 
-* Deployment instructions
+-to check emails initialice mailcatcher, run in console "mailcatcher" and open in the browser http://127.0.0.1:1080/
 
-* ...
+* Tools used:
+
+-rubocop
+
+-reek
+
+-brakeman
+
+-annotate
+
+-rspec
