@@ -40,8 +40,8 @@ jobs:
       - name: Formatting and Security Checks
         run: |
           bundle exec rubocop
-          bundle exec brakeman -z
-          
+          bundle exec brakeman 
+
       - name: Check for missing annotations
         run: bundle exec annotate
 
