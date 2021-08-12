@@ -39,4 +39,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   include DeviseTokenAuth::Concerns::User
   enum gender: { female: 0, male: 1, other: 2 }
+  validates :gender, :password, :password_confirmation, presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+  format: { with: VALID_EMAIL_REGEX }
+  validates_uniqueness_of :email
 end
