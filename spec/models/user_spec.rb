@@ -57,13 +57,6 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
-  it 'is not valid without a gender' do
-    user = @user
-    user.gender = nil
-    user.save!
-    expect(user).to_not be_valid
-  end
-
   it 'is not valid without a password' do
     user = @user
     user.password = nil
