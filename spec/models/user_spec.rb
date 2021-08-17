@@ -60,24 +60,13 @@ RSpec.describe User, type: :model do
   it 'is not valid without a gender' do
     user = @user
     user.gender = nil
+    user.save!
     expect(user).to_not be_valid
   end
-
-  # it 'is not valid if gender has a value not valid' do
-  #   user = User.new(email: 'test@test.com', gender: 'X', password: 'ABC12345',
-  #   password_confirmation: 'ABC12345')
-  #   expect(user).to raise_error(ArgumentError, /'X' is not a valid gender/)
-  # end
 
   it 'is not valid without a password' do
     user = @user
     user.password = nil
-    expect(user).to_not be_valid
-  end
-
-  it 'is not valid without a password_confirmation' do
-    user = @user
-    user.password_confirmation = nil
     expect(user).to_not be_valid
   end
 
