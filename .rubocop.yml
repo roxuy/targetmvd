@@ -13,8 +13,9 @@ AllCops:
     - bin/bundle
     - bin/yarn
 
-# Layout/EndOfLine:
-#   EnforcedStyle: crlf
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/api/v1/registrations_controller.rb
 
 Metrics/BlockLength:
   Exclude:

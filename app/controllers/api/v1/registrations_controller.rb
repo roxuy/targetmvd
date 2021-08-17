@@ -1,7 +1,8 @@
 module Api
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
-      # before_action :sign_up_params
+      before_action :authenticate_api_v1_user!
+      skip_before_action :authenticate_api_v1_user!, only: [:create]
 
       private
 
