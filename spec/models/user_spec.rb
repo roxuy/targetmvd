@@ -33,38 +33,38 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before(:each) do
-    @user = User.new(email: 'test@test.com', gender: 'other', password: 'ABC12345',
-                     password_confirmation: 'ABC12345')
+  let(:user) { build :user }
+
+  it 'is valid with required attributes' do
+    expect(user).to be_valid
   end
 
-  it 'is not valid without required attributes' do
-    user = User.new
-    expect(user).to_not be_valid
-  end
-
-  it 'is not valid without an email' do
-    user = @user
+  it 'is not valid without email' do
     user.email = nil
     expect(user).to_not be_valid
   end
 
-  it 'is not valid if the email is already registered' do
-    User.create!(email: 'test2@test.com', gender: 'other', password: 'ABC12345',
-                 password_confirmation: 'ABC12345')
-    user = User.new(email: 'test2@test.com', gender: 'other', password: 'ABC12345',
-                    password_confirmation: 'ABC12345')
-    expect(user).to_not be_valid
+  it 'is not valid with a invalid gender' do
+    expect { build(:user, gender: :wrong) }
+      .to raise_error(ArgumentError)
+      .with_message(/'wrong' is not a valid gender/)
+  end
+
+  context 'is not valid if the email is already registered' do
+    let(:existed_user) { create :user }
+    let(:newuser) { build :user, email: existed_user.email }
+
+    it 'should return email already registered' do
+      expect(newuser).to be_invalid
+    end
   end
 
   it 'is not valid without a password' do
-    user = @user
     user.password = nil
     expect(user).to_not be_valid
   end
 
   it 'is not valid if password and password_confirmation are not the same' do
-    user = @user
     user.password = 'ABC'
     expect(user).to_not be_valid
   end

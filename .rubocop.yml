@@ -12,6 +12,7 @@ AllCops:
     - config/initializers/*
     - bin/bundle
     - bin/yarn
+    - app/models/user.rb
 
 Rails/LexicallyScopedActionFilter:
   Exclude:
