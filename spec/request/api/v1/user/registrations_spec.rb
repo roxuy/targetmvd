@@ -33,7 +33,6 @@ describe 'Registration /api/v1/users', type: :request do
 
     it 'returns the user' do
       subject
-      json = JSON.parse(response.body)
       expect(json['data']['gender']).to eq('other')
       expect(json['data']['provider']).to eq('email')
     end
@@ -59,7 +58,6 @@ describe 'Registration /api/v1/users', type: :request do
 
     it 'return a message error' do
       subject
-      json = JSON.parse(response.body)
       expect(json['errors']['password_confirmation']).to include("doesn't match Password")
     end
   end
@@ -86,7 +84,6 @@ describe 'Registration /api/v1/users', type: :request do
 
     it 'return a message error' do
       subject
-      json = JSON.parse(response.body)
       expect(json['errors']['email']).to include('has already been taken')
     end
   end
