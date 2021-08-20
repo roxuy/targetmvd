@@ -33,13 +33,11 @@
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   include DeviseTokenAuth::Concerns::User
-  enum gender: { female: 0, male: 1, other: 2 }
-  validates :gender, :password, :password_confirmation, presence: true
+  enum gender: [:female, :male, :other]
+  validates :gender, inclusion: { in: genders }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }, uniqueness: true
