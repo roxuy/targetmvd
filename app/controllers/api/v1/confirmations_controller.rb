@@ -7,9 +7,9 @@ module Api
 
         if resource.errors.empty?
           set_flash_message!(:notice, :confirmed)
-          render json: { 'message': 'user has been confirmed' }, status: :success
+          render json: { 'message': 'user has been confirmed' }, status: 202
         else
-          render json: { 'error': 'error at confirmation' }, status: :unprocessable_entity
+          render json: { 'error': 'error at confirmation' }, status: 422
         end
       end
     end

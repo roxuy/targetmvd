@@ -53,7 +53,7 @@ describe 'Registration /api/v1/users', type: :request do
 
     it 'does not return a successful response' do
       subject
-      expect(response.status).to eq(422)
+      expect(response).to be_unprocessable
     end
 
     it 'return a message error' do
@@ -79,7 +79,7 @@ describe 'Registration /api/v1/users', type: :request do
 
     it 'does not return a successful response' do
       subject
-      expect(response.status).to eq(422)
+      expect(response).to be_unprocessable
     end
 
     it 'return a message error' do
