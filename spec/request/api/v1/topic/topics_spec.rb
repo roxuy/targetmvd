@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Topic /api/v1/topics', type: :request do
   let(:user) { create(:user, confirmed_at: Time.zone.today) }
   let!(:topics) { create_list(:topic, 10) }
-  before (:each) do
+  before(:each) do
     login
   end
   subject do
