@@ -3,13 +3,15 @@ module Api
     class ConfirmationsController < DeviseTokenAuth::ConfirmationsController
       def show
         self.resource = resource_class.confirm_by_token(params[:confirmation_token])
-        yield resource if block_given?
 
         if resource.errors.empty?
-          set_flash_message!(:notice, :confirmed)
-          render json: { 'message': 'user has been confirmed' }, status: :accepted
+          render json: { success: true,
+                         message: I18n.t('devise.confirmations.confirmed') },
+                 status: :accepted
         else
-          render json: { 'error': 'error at confirmation' }, status: :unprocessable_entity
+          render json: { success: false,
+                         message: I18n.t('errors.messages.error_confirmation') },
+                 status: :unprocessable_entity
         end
       end
     end
