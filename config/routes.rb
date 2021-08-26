@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         sessions: 'api/v1/sessions'
       }
 
-      get '/topics', to: 'topic#index'
+      get '/topics', to: 'topics#index'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
