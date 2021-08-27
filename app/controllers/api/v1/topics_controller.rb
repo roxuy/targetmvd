@@ -1,10 +1,10 @@
 module Api
   module V1
-    class TopicController < ApplicationController
+    class TopicsController < ApplicationController
       before_action :authenticate_api_v1_user!
 
       def index
-        render json: Topic.all
+        @topics = Topic.all
       end
     end
   end

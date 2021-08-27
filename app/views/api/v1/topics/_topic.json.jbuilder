@@ -1,3 +1,3 @@
-json.id obj.id
-json.label obj.label
-json.icon obj.icon
+json.id topic.id
+json.label topic.label
+json.icon topic.icon
