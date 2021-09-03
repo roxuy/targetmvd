@@ -39,6 +39,7 @@ gem 'devise'
 # enable cors
 gem 'rack-cors', require: 'rack/cors'
 # gem for MailCatcher
+gem 'geokit-rails'
 gem 'mailcatcher'
 
 group :test do
