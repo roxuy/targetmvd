@@ -36,7 +36,7 @@ module Api
             latitude,
             longitude
           ]
-        ).where('topic_id = ? AND user_id != ?', topic_id, current_user)
+        ).where(topic_id: topic_id).where.not(user_id: current_user)
       end
 
       def create_conversation(user, user_match, topic)
