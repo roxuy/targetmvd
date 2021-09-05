@@ -18,13 +18,14 @@
 #  fk_rails_...  (topic_id => topics.id)
 #
 class Conversation < ApplicationRecord
-  belongs_to :user1, class_name: 'User', foreign_key: 'user1'
-  belongs_to :user2, class_name: 'User', foreign_key: 'user2'
+  belongs_to :user1, class_name: 'User', foreign_key: 'user1', inverse_of: 'conversations'
+  belongs_to :user2, class_name: 'User', foreign_key: 'user2', inverse_of: 'conversations'
   belongs_to :topic
   validates :user1, presence: true
   validates :user2, presence: true
   validates :topic_id, presence: true
   validate :users_must_be_different
+
   def users_must_be_different
     errors.add(:user2, "user1 and user2 can't be the same") if user1 == user2
   end

@@ -15,6 +15,7 @@
 # Indexes
 #
 #  index_targets_on_latitude_and_longitude  (latitude,longitude)
+#  index_targets_on_title                   (title) UNIQUE
 #  index_targets_on_topic_id                (topic_id)
 #  index_targets_on_user_id                 (user_id)
 #

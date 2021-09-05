@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_31_155954) do
+ActiveRecord::Schema.define(version: 2021_09_04_163519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,16 @@ ActiveRecord::Schema.define(version: 2021_08_31_155954) do
   end
 
   create_table "targets", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title"
     t.bigint "topic_id", null: false
     t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.decimal "latitude", precision: 10, scale: 6, null: false
     t.decimal "longitude", precision: 10, scale: 6, null: false
     t.decimal "radius", precision: 7, scale: 2, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["latitude", "longitude"], name: "index_targets_on_latitude_and_longitude"
+    t.index ["title"], name: "index_targets_on_title", unique: true
     t.index ["topic_id"], name: "index_targets_on_topic_id"
     t.index ["user_id"], name: "index_targets_on_user_id"
   end

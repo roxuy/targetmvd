@@ -42,5 +42,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }, uniqueness: true
   has_many :targets
+  has_many :conversations, dependent: :destroy, inverse_of: 'user1'
+  has_many :conversations, dependent: :destroy, inverse_of: 'user2'
 
 end

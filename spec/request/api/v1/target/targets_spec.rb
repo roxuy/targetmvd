@@ -4,9 +4,13 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
   let(:user) { create(:user, confirmed_at: Time.zone.today) }
   let!(:user2) { create(:user, confirmed_at: Time.zone.today) }
   let(:topic) { create(:topic) }
+  let(:title) { 'title' }
+  let(:latitude) { '-32.528879' }
+  let(:longitude) { '-55.769835' }
+  let(:radius) { '400.0' }
   let!(:target) do
-    create :target, user: user2, topic_id: topic.id,
-                    latitude: -32.528879, longitude: -55.769835, radius: 400
+    create(:target, user: user2, topic_id: topic.id,
+                    latitude: latitude, longitude: longitude, radius: radius)
   end
 
   before(:each) do
@@ -14,11 +18,11 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
   end
 
   subject do
-    post '/api/v1/targets', params: { target: { title: 'target title',
+    post '/api/v1/targets', params: { target: { title: title,
                                                 topic_id: topic.id,
-                                                latitude: -32.528879,
-                                                longitude: -55.769835,
-                                                radius: 400.0 } },
+                                                latitude: latitude,
+                                                longitude: longitude,
+                                                radius: radius } },
                             headers: auth_headers
   end
 
@@ -40,10 +44,10 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
 
   it 'should returns the created target' do
     subject
-    expect(json['target']['title']).to eq('target title')
-    expect(json['target']['latitude']).to eq('-32.528879')
-    expect(json['target']['longitude']).to eq('-55.769835')
-    expect(json['target']['radius']).to eq('400.0')
+    expect(json['target']['title']).to eq(title)
+    expect(json['target']['latitude']).to eq(latitude)
+    expect(json['target']['longitude']).to eq(longitude)
+    expect(json['target']['radius']).to eq(radius)
   end
 
   it 'should return (1) match and (1) conversation' do
@@ -53,12 +57,13 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
   end
 
   describe 'when does not exists another match' do
+    let(:latitude2) { '32.528879' }
     subject do
-      post '/api/v1/targets', params: { target: { title: 'target title',
+      post '/api/v1/targets', params: { target: { title: title,
                                                   topic_id: topic.id,
-                                                  latitude: 32.528879,
-                                                  longitude: 55.769835,
-                                                  radius: 400.0 } },
+                                                  latitude: latitude2,
+                                                  longitude: longitude,
+                                                  radius: radius } },
                               headers: auth_headers
     end
     it 'should return (0) match and (0) conversation ' do
@@ -80,10 +85,10 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
 
     it 'should returns the created target' do
       subject
-      expect(json['target']['title']).to eq('target title')
-      expect(json['target']['latitude']).to eq('32.528879')
-      expect(json['target']['longitude']).to eq('55.769835')
-      expect(json['target']['radius']).to eq('400.0')
+      expect(json['target']['title']).to eq(title)
+      expect(json['target']['latitude']).to eq(latitude2)
+      expect(json['target']['longitude']).to eq(longitude)
+      expect(json['target']['radius']).to eq(radius)
     end
   end
 end
