@@ -18,8 +18,8 @@
 #  fk_rails_...  (topic_id => topics.id)
 #
 class Conversation < ApplicationRecord
-  belongs_to :user1, class_name: 'User', foreign_key: 'user1', inverse_of: 'conversations'
-  belongs_to :user2, class_name: 'User', foreign_key: 'user2', inverse_of: 'conversations'
+  belongs_to :user1, class_name: 'User', foreign_key: 'user1', inverse_of: 'conversations1'
+  belongs_to :user2, class_name: 'User', foreign_key: 'user2', inverse_of: 'conversations2'
   belongs_to :topic
   validates :user1, presence: true
   validates :user2, presence: true
