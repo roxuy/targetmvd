@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe 'Logout /api/v1/users/sign_out', type: :request do
   let(:user) { create :user }
-  before(:each) do
-    login
-  end
+  before { login }
 
   describe 'when logout params are correct' do
     subject do
