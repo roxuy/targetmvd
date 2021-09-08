@@ -30,8 +30,10 @@ class Target < ApplicationRecord
                    distance_field_name: :radius,
                    lat_column_name: :latitude,
                    lng_column_name: :longitude
+                   
   belongs_to :topic
   belongs_to :user
+  
   validates :radius, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :title, presence: true, length: { maximum: 255 }, uniqueness: true
   validates :latitude, presence: true
