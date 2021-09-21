@@ -25,7 +25,7 @@ class TargetMatcherService
 
   def create_conversations(targets, target)
     targets.map do |t|
-      Conversation.create(user1: target.user, user2: User.find(t.user.id), topic: target.topic)
+      Conversation.create!(user1: target.user, user2: User.find(t.user.id), topic: target.topic)
     end
   end
 end

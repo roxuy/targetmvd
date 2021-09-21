@@ -3,9 +3,9 @@
 # Table name: targets
 #
 #  id         :bigint           not null, primary key
-#  latitude   :decimal(10, 6)   not null
-#  longitude  :decimal(10, 6)   not null
-#  radius     :decimal(7, 2)    not null
+#  latitude   :float            not null
+#  longitude  :float            not null
+#  radius     :float            not null
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

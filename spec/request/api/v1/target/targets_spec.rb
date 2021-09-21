@@ -5,9 +5,9 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
   let!(:user2) { create(:user, confirmed_at: Time.zone.today) }
   let(:topic) { create(:topic) }
   let(:title) { 'title' }
-  let(:latitude) { '-32.528879' }
-  let(:longitude) { '-55.769835' }
-  let(:radius) { '400.0' }
+  let(:latitude) { -32.528879 }
+  let(:longitude) { -55.769835 }
+  let(:radius) { 400.0 }
   let!(:target) do
     create(:target, user: user2, topic_id: topic.id,
                     latitude: latitude, longitude: longitude, radius: radius)
@@ -57,7 +57,7 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
   end
 
   describe 'when does not exists another match' do
-    let(:latitude2) { '32.528879' }
+    let(:latitude2) { 32.528879 }
     subject do
       post '/api/v1/targets', params: { target: { title: title,
                                                   topic_id: topic.id,

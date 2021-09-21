@@ -23,6 +23,7 @@ RSpec.describe Conversation, type: :model do
   let(:user1) { create :user }
   let(:user2) { create :user }
   let(:topic) { create :topic }
+
   subject do
     described_class.new(user1: user1,
                         user2: user2,

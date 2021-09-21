@@ -4,9 +4,9 @@ class CreateTargets < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.references :topic, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.decimal :latitude, null: false, precision: 10, scale: 6
-      t.decimal :longitude, null: false, precision: 10, scale: 6
-      t.decimal :radius, null: false, precision: 7, scale: 2
+      t.float :latitude, null: false
+      t.float :longitude, null: false
+      t.float :radius, null: false
 
       t.timestamps
     end
