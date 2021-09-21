@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_160803) do
+ActiveRecord::Schema.define(version: 2021_09_21_203825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user1"
+    t.integer "user2"
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_conversations_on_topic_id"
+  end
+
+  create_table "targets", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "topic_id", null: false
+    t.bigint "user_id", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.float "radius", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["latitude", "longitude"], name: "index_targets_on_latitude_and_longitude"
+    t.index ["title"], name: "index_targets_on_title", unique: true
+    t.index ["topic_id"], name: "index_targets_on_topic_id"
+    t.index ["user_id"], name: "index_targets_on_user_id"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string "label"
@@ -49,4 +73,7 @@ ActiveRecord::Schema.define(version: 2021_08_20_160803) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "conversations", "topics"
+  add_foreign_key "targets", "topics"
+  add_foreign_key "targets", "users"
 end

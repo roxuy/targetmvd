@@ -16,6 +16,7 @@ require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
   let(:topic) { build :topic }
+
   it 'is valid with required attributes' do
     expect(topic).to be_valid
   end
