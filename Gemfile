@@ -40,7 +40,6 @@ gem 'devise'
 gem 'rack-cors', require: 'rack/cors'
 # gem for MailCatcher
 gem 'geokit-rails'
-gem 'mailcatcher'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
