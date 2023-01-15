@@ -6,7 +6,7 @@
 #  latitude   :float            not null
 #  longitude  :float            not null
 #  radius     :float            not null
-#  title      :string
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  topic_id   :bigint           not null
