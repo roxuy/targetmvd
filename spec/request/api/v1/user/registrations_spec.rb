@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 describe 'Registration /api/v1/users', type: :request do
+  let(:user) { build(:user) }
   before(:each) do
     @api_v1_user_registration = '/api/v1/users'
     @signup_params = {
       'user': {
-        'email': Faker::Internet.unique.email,
-        'password': 'password',
-        'password_confirmation': 'password',
-        'gender': 'other'
+        'email': user.email,
+        'password': user.password,
+        'password_confirmation': user.password,
+        'gender': user.gender
       }
     }
   end
@@ -33,12 +34,12 @@ describe 'Registration /api/v1/users', type: :request do
 
     it 'returns the user' do
       subject
-      expect(json['data']['gender']).to eq('other')
-      expect(json['data']['provider']).to eq('email')
+      expect(json['data']['gender']).to eq(user.gender)
+      expect(json['data']['email']).to eq(user.email)
     end
   end
 
-  describe 'when password and password_confirmation are not the same' do
+  describe 'when password and password_confirmation mismatch' do
     subject do
       post @api_v1_user_registration,
            params: @signup_params.merge({ user: { password_confirmation: '1234' } }),
