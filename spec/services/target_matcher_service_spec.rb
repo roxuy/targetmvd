@@ -8,21 +8,23 @@ RSpec.describe TargetMatcherService, type: :model do
 
     context 'when there is not match' do
       it 'does not return matches' do
-        TargetMatcherService.new(target).call 
-      
+        TargetMatcherService.new(target).call
+
         expect(Conversation.all.count).to eq(0)
-      end  
-    end 
-    
+      end
+    end
+
     context 'there is matches' do
       let!(:user2) { create(:user) }
-      let!(:target2) { create(:target, latitude: target.latitude, longitude: target.longitude,
-        radius: target.radius, user: user2, topic_id: topic.id)}
+      let!(:target2) do
+        create(:target, latitude: target.latitude, longitude: target.longitude,
+                        radius: target.radius, user: user2, topic_id: topic.id)
+      end
       it 'creates a conversation' do
-        TargetMatcherService.new(target).call 
-      
+        TargetMatcherService.new(target).call
+
         expect(Conversation.all.count).to eq(1)
-      end  
-    end 
+      end
+    end
   end
-end          
+end
