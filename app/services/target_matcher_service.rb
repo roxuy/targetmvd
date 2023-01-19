@@ -5,7 +5,7 @@ class TargetMatcherService
     @target = target
   end
 
-  def find_matches
+  def call
     targets = search_targets(@target.radius, @target.latitude, @target.longitude,
                              @target.topic_id, @target.user)
     conversations = create_conversations(targets, @target)

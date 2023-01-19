@@ -8,7 +8,7 @@ module Api
         target.user = current_api_v1_user
 
         if target.save
-          @response = TargetMatcherService.new(target).find_matches
+          @response = TargetMatcherService.new(target).call
           render status: :created
         else
           render json: target.errors, status: :unprocessable_entity
