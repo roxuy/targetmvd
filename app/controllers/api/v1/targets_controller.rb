@@ -3,6 +3,10 @@ module Api
     class TargetsController < ApplicationController
       before_action :authenticate_api_v1_user!
 
+      def index
+        @targets = Target.filter_by_user(current_api_v1_user)
+      end
+
       def create
         target = Target.new(target_params)
         target.user = current_api_v1_user
