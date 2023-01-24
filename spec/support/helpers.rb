@@ -8,11 +8,5 @@ module Request
     def json
       JSON.parse(response.body)
     end
-
-    def login
-      post '/api/v1/users/sign_in',
-           params: { user: { email: user.email, password: user.password } },
-           as: :json
-    end
   end
 end

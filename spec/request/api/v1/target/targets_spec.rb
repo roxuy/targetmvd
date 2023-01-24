@@ -13,17 +13,14 @@ RSpec.describe 'Target /api/v1/targets', type: :request do
                     latitude: latitude, longitude: longitude, radius: radius)
   end
 
-  before(:each) do
-    login
-  end
-
   subject do
-    post '/api/v1/targets', params: { target: { title: title,
-                                                topic_id: topic.id,
-                                                latitude: latitude,
-                                                longitude: longitude,
-                                                radius: radius } },
-                            headers: auth_headers
+    post '/api/v1/targets',
+         params: { target: { title: title,
+                             topic_id: topic.id,
+                             latitude: latitude,
+                             longitude: longitude,
+                             radius: radius } },
+         headers: auth_headers
   end
 
   it 'should return a successful response' do

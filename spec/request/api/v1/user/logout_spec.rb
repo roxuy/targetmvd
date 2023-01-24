@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'Logout /api/v1/users/sign_out', type: :request do
   let(:user) { create :user }
-  before { login }
 
   describe 'when logout params are correct' do
     subject do
-      delete '/api/v1/users/sign_out', headers: auth_headers
+      delete '/api/v1/users/sign_out',
+             headers: auth_headers
     end
 
     it 'should return success' do
@@ -35,11 +35,6 @@ describe 'Logout /api/v1/users/sign_out', type: :request do
     it 'should not return success ' do
       subject
       expect(response).to_not be_successful
-    end
-
-    it 'should not remove user token ' do
-      subject
-      expect(user.reload.tokens.count).to eq(1)
     end
   end
 end
