@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       }
 
       get '/topics', to: 'topics#index'
-      resources :targets, only: %i[create]
+      resources :targets, only: %i[index create]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
